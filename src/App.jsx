@@ -27,6 +27,11 @@ function App() {
     setTodos((prev) => prev.filter((todo) => todo.id !== id));
   };
 
+  const deleteAllTodos = () => {
+    localStorage.clear();
+    setTodos([]); // Update the state to reflect the empty list
+  };
+  
   const checkComplete = (id) => {
     setTodos((prev) =>
       prev.map((prevTodo) =>
@@ -65,7 +70,14 @@ function App() {
             {/* Todo form goes here */}
             <TodoForm/>
           </div>
-
+          <div className="flex justify-end mt-4">
+            <button
+              className="inline-flex items-center rounded-r-lg px-3 py-1 mb-4 rounded-lg bg-red-500 hover:bg-red-700 text-white font-bold"
+              onClick={() => deleteAllTodos()}
+            >
+              Delete All
+            </button>
+          </div>
           <div className="flex flex-wrap gap-y-3">
             {/*Loop and Add TodoItem here */}
             {todos.map((todo)=>
